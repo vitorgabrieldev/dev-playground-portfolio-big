@@ -3,6 +3,8 @@ import { useState, useRef, useEffect } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import CryptoJS from 'crypto-js'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useAuth } from '@/context/AuthContext'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -11,6 +13,9 @@ export default function Login() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const emailRef = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { setUser } = useAuth()
 
   useEffect(() => {
     emailRef.current?.focus()
@@ -28,7 +33,9 @@ export default function Login() {
         const secret = import.meta.env.VITE_CRYPTO_SECRET
         const encrypted = CryptoJS.AES.encrypt(JSON.stringify(user), secret).toString()
         localStorage.setItem('user', encrypted)
-        setSuccess(true)
+        setUser(user)
+        const from = (location.state as any)?.from?.pathname || '/'
+        navigate(from, { replace: true })
       } else {
         setError('E-mail ou senha inválidos')
       }
