@@ -1,4 +1,4 @@
-export const mockUser = {
+export let mockUser = {
   uuid: "b1a2c3d4-e5f6-7890-abcd-1234567890ef",
   name: "Aluno Teste",
   email: "vitorgabrieldeoliveiradev@gmail.com",

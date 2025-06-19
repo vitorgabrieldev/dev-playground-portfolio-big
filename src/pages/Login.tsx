@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import CryptoJS from 'crypto-js'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { useAuth } from '@/context/AuthContext'
 
 export default function Login() {
@@ -103,6 +103,10 @@ export default function Login() {
           </Button>
           {error && <span id="login-error" className="text-red-600 text-sm text-center" role="alert">{error}</span>}
           {success && <span className="text-green-600 text-sm text-center" role="status">Login realizado com sucesso!</span>}
+          <div className="flex flex-col gap-2 mt-4 text-center text-sm">
+            <Link to="/cadastro" className="text-primary hover:underline">Criar uma conta</Link>
+            <Link to="/recuperar-senha" className="text-primary hover:underline">Esqueci minha senha</Link>
+          </div>
         </form>
       </div>
     </>
