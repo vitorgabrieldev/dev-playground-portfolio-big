@@ -1,0 +1,28 @@
+/* ============================================================================
+	Vars
+============================================================================ */
+$font-family:roboto, Helvetica, Arial, sans-serif;
+$primary-color:#1F3162;
+$primary-color-hover:#1F3162;
+$secondary-color:#1F3162;
+$secondary-color-hover:#b4272b;
+$grid-width:1200px;
+$shadow:0 4px 10px rgba($primary-color, 0.1);
+$shadow-hover:0 4px 20px rgba($primary-color, 0.4);
+$border-radius:6px;
+$form-vertical-label-padding:0 0 6px;
+$layout-body-background:#eef2f7;
+$input-height:40px;
+
+// Main drawer
+$main-drawer-background: #1F3162;
+$main-drawer-color:#f1f1f1;
+$main-drawer-color-hover:#f2f2f2;
+$main-drawer-color-active:#f3f3f3;
+$main-drawer-background-active:$primary-color;
+$main-drawer-arrow-color:#fff;
+$main-drawer-submenu-background:#2b3f74;
+$main-drawer-submenu-color:#F1f1f1;
+$main-drawer-submenu-color-hover:#fff;
+$main-drawer-submenu-color-active:#fff;
+$main-drawer-submenu-background-active:$primary-color;

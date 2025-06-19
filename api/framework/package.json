@@ -3,15 +3,11 @@
 	"scripts": {
 		"homolog": "yarn run homologation",
 		"homologation": "cross-env NODE_ENV=homologation NODE_OPTIONS=--openssl-legacy-provider webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-
 		"dev": "yarn run development",
 		"development": "cross-env NODE_ENV=development NODE_OPTIONS=--openssl-legacy-provider webpack --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
-
 		"watch": "yarn run development -- --watch",
 		"watch-poll": "yarn run watch -- --watch-poll",
-
 		"hot": "cross-env NODE_ENV=development NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
-
 		"prod": "yarn run production",
 		"production": "cross-env NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider webpack --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
 	},
@@ -31,6 +27,7 @@
 		"@fancyapps/ui": "^4.0.31",
 		"antd": "^4.16.1",
 		"axios": "^0.21.1",
+		"framer-motion": "^6.5.1",
 		"lodash": "^4.17.21",
 		"moment": "^2.29.1",
 		"prop-types": "^15.7.2",
@@ -45,7 +42,8 @@
 		"redux-thunk": "^2.3.0"
 	},
 	"devDependencies": {
-		"@babel/preset-react": "^7.12.10",
+		"@babel/plugin-proposal-class-properties": "^7.18.6",
+		"@babel/preset-react": "^7.27.1",
 		"browser-sync": "^2.26.13",
 		"browser-sync-webpack-plugin": "^2.0.1",
 		"cross-env": "^7.0",

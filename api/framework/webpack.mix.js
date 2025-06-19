@@ -9,6 +9,15 @@ mix.options({
 mix.webpackConfig({
 	watchOptions: {
 		ignored: /node_modules/
+	},
+	module: {
+		rules: [
+			{
+				test: /\.mjs$/,
+				include: /node_modules/,
+				type: "javascript/auto"
+			}
+		]
 	}
 });
 
