@@ -1,0 +1,12 @@
+# General
+/.idea
+/hot
+/storage
+/documentation
+
+# Assets generated
+/css
+/fonts
+/images
+/js
+mix-manifest.json

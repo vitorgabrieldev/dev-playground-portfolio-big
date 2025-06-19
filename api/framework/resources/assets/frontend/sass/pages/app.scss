@@ -1,0 +1,19 @@
+@import "../vars";
+
+body.page-app {
+	line-height:1.25;
+	font-size:16px;
+	color:#000;
+	p,
+	.ant-typography {
+		&:not(:last-child) {
+			margin-bottom:20px;
+		}
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-weight:600;
+	}
+	#site-main {
+		padding:30px 10px;
+	}
+}

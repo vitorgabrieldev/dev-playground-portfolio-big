@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3314:3306
+  web:
+    build: .
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    mem_limit: 4g
+  nginx:
+    image: nginx:latest
+    volumes:
+      - .:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 3032:80
+    depends_on:
+      - web
+      - db
+    mem_limit: 4g
+  websockets:
+    build: .
+    command: php framework/artisan websockets:serve --port=6003
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "6003:6002"
+    depends_on:
+      - web
+    networks:
+      - default

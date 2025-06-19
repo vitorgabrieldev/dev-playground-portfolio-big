@@ -1,0 +1,28 @@
+@import "../vars";
+
+@keyframes skeleton-loading {
+	0% {
+		transform:translateX(-37.5%);
+	}
+	100% {
+		transform:translateX(37.5%);
+	}
+}
+
+.component-skeleton {
+	position:relative;
+	overflow:hidden;
+	width:100%;
+	background:0 0;
+	border-radius:4px;
+	&::after {
+		position:absolute;
+		inset:0 -150%;
+		background:linear-gradient(90deg, #bebebe33 25%, #8181813d 37%, #bebebe33 63%);
+		animation:skeleton-loading 1.4s ease infinite;
+		content:"";
+	}
+	+ .component-skeleton {
+		margin-top:16px;
+	}
+}

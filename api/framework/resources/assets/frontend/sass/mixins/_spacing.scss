@@ -1,0 +1,15 @@
+@import "../vars";
+
+@mixin create-spacing-classes($prefix, $modifier, $value) {
+	@each $number, $val in $spacing-values {
+		@if ($prefix != '') {
+			.#{$modifier}-#{$prefix}-#{$number} {
+				#{$value}:$val !important;
+			}
+		} @else {
+			.#{$modifier}-#{$number} {
+				#{$value}:$val !important;
+			}
+		}
+	}
+}

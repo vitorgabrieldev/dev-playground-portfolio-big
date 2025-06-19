@@ -1,0 +1,666 @@
+@import "../../vars";
+@import "../../mixins/spacing";
+
+/* ============================================================================
+	Helpers
+============================================================================ */
+//////////////////////////////////////////
+// Color
+.color-primary {
+	color:$primary-color;
+}
+
+.color-secondary {
+	color:$secondary-color;
+}
+
+.color-third {
+	color:$third-color;
+}
+
+.text-color {
+	color:$text-color;
+}
+
+.text-color-alt {
+	color:$text-color-alt;
+}
+
+//////////////////////////////////////////
+// Background
+.background-primary {
+	background-color:$primary-color;
+}
+
+.background-secondary {
+	background-color:$secondary-color;
+}
+
+.background-third {
+	background-color:$third-color;
+}
+
+//////////////////////////////////////////
+// Border
+.border-solid {
+	border-style:solid;
+}
+
+.border-dashed {
+	border-style:dashed;
+}
+
+.border-width-2 {
+	border-width:2px;
+}
+
+.border-width-4 {
+	border-width:2px;
+}
+
+.border-width-6 {
+	border-width:6px;
+}
+
+.border-primary {
+	border-color:$primary-color;
+}
+
+.border-secondary {
+	border-color:$secondary-color;
+}
+
+.border-third {
+	border-color:$third-color;
+}
+
+.border-rounded {
+	border-radius:50%;
+}
+
+.border-radius {
+	border-radius:$border-radius;
+}
+
+.border-radius-2 {
+	border-radius:2px;
+}
+
+.border-radius-4 {
+	border-radius:4px;
+}
+
+.border-radius-6 {
+	border-radius:6px;
+}
+
+.border-radius-8 {
+	border-radius:8px;
+}
+
+.border-radius-10 {
+	border-radius:10px;
+}
+
+//////////////////////////////////////////
+// Text align
+.text-left {
+	text-align:left;
+}
+
+.text-center {
+	text-align:center;
+}
+
+.text-right {
+	text-align:right;
+}
+
+@media screen and (min-width:$screen-sm-min) {
+	.text-left-sm {
+		text-align:left;
+	}
+	.text-center-sm {
+		text-align:center;
+	}
+	.text-right-sm {
+		text-align:right;
+	}
+}
+
+@media screen and (min-width:$screen-md-min) {
+	.text-left-md {
+		text-align:left;
+	}
+	.text-center-md {
+		text-align:center;
+	}
+	.text-right-md {
+		text-align:right;
+	}
+}
+
+@media screen and (min-width:$screen-lg-min) {
+	.text-left-lg {
+		text-align:left;
+	}
+	.text-center-lg {
+		text-align:center;
+	}
+	.text-right-lg {
+		text-align:right;
+	}
+}
+
+@media screen and (min-width:$screen-xl-min) {
+	.text-left-xl {
+		text-align:left;
+	}
+	.text-center-xl {
+		text-align:center;
+	}
+	.text-right-xl {
+		text-align:right;
+	}
+}
+
+@media screen and (min-width:$screen-xxl-min) {
+	.text-left-xxl {
+		text-align:left;
+	}
+	.text-center-xxl {
+		text-align:center;
+	}
+	.text-right-xxl {
+		text-align:right;
+	}
+}
+
+//////////////////////////////////////////
+// Text weight
+.text-weight-400 {
+	font-weight:400;
+}
+
+.text-weight-600 {
+	font-weight:600;
+}
+
+.text-weight-700 {
+	font-weight:700;
+}
+
+.text-weight-900 {
+	font-weight:900;
+}
+
+//////////////////////////////////////////
+// Text size
+.text-size-xxsmall {
+	font-size:0.65rem;
+}
+
+.text-size-xsmall {
+	font-size:0.75em;
+}
+
+.text-size-small {
+	font-size:0.95rem;
+}
+
+.text-size-medium {
+	font-size:1.28rem;
+}
+
+.text-size-large {
+	font-size:1.45rem;
+}
+
+.text-size-xlarge {
+	font-size:1.65rem;
+}
+
+.text-size-xxlarge {
+	font-size:1.8rem;
+}
+
+.text-size-xxxlarge {
+	font-size:2rem;
+}
+
+//////////////////////////////////////////
+// Text decoration
+.text-underline {
+	text-decoration:underline !important;
+}
+
+.text-line-through {
+	text-decoration:line-through !important;
+}
+
+//////////////////////////////////////////
+// Interaction
+.link-disable-pointer-events {
+	pointer-events:none !important;
+}
+
+//////////////////////////////////////////
+// Break line
+.show-break-lines {
+	white-space:pre-wrap;
+}
+.hide-break-lines {
+	white-space:initial;
+}
+
+@media screen and (min-width:$screen-sm-min) {
+	.show-break-lines-sm {
+		white-space:pre-wrap;
+	}
+	.hide-break-lines-sm {
+		white-space:initial;
+	}
+}
+
+@media screen and (min-width:$screen-md-min) {
+	.show-break-lines-md {
+		white-space:pre-wrap;
+	}
+	.hide-break-lines-md {
+		white-space:initial;
+	}
+}
+
+@media screen and (min-width:$screen-lg-min) {
+	.show-break-lines-lg {
+		white-space:pre-wrap;
+	}
+	.hide-break-lines-lg {
+		white-space:initial;
+	}
+}
+
+@media screen and (min-width:$screen-xl-min) {
+	.show-break-lines-xl {
+		white-space:pre-wrap;
+	}
+	.hide-break-lines-xl {
+		white-space:initial;
+	}
+}
+
+@media screen and (min-width:$screen-xxl-min) {
+	.show-break-lines-xxl {
+		white-space:pre-wrap;
+	}
+	.hide-break-lines-xxl {
+		white-space:initial;
+	}
+}
+
+//////////////////////////////////////////
+// Display
+.display-block {
+	display:block;
+}
+
+.display-inline {
+	display:inline-block;
+}
+
+//////////////////////////////////////////
+// Flex
+.flex {
+	display:flex;
+}
+.flex-inline {
+	display:inline-flex;
+}
+
+// Remove pseudo elements created by micro clearfix as precaution
+.flex::before,
+.flex::after,
+.flex-inline::before,
+.flex-inline::after {
+	display:none;
+}
+
+// Item dimensions
+/*
+ * Initial: 0 1 auto
+ * Content dimensions, but shrinks
+ *
+ * No Flex: 0 0 auto
+ * Content dimensions
+ */
+.flex-none {
+	flex:none;
+}
+
+/*
+ * Relative Flex: 1 1 auto
+ * Space is allocated considering content
+ */
+.flex-auto {
+	flex:auto;
+}
+
+/*
+ * Absolute Flex: 1 1 0%
+ * Space is allocated solely based on flex
+ */
+.flex-1 {
+	flex:1;
+}
+
+// Direction
+.flex-row {
+	flex-direction:row;
+}
+.flex-row-reverse {
+	flex-direction:row-reverse;
+}
+.flex-column {
+	flex-direction:column;
+}
+.flex-column-reverse {
+	flex-direction:column-reverse;
+}
+
+// Wrap
+.flex-nowrap {
+	flex-wrap:nowrap;
+}
+.flex-wrap {
+	flex-wrap:wrap;
+}
+.flex-wrap-reverse {
+	flex-wrap:wrap-reverse;
+}
+
+.flex-wrap-stretch {
+	align-content:stretch;
+}
+.flex-wrap-top {
+	align-content:flex-start;
+}
+.flex-wrap-middle {
+	align-content:center;
+}
+.flex-wrap-bottom {
+	align-content:flex-end;
+}
+.flex-wrap-between {
+	align-content:space-between;
+}
+.flex-wrap-around {
+	align-content:space-around;
+}
+
+// Alignment vertical
+.flex-stretch {
+	align-items:stretch;
+}
+.flex-top {
+	align-items:flex-start;
+}
+.flex-middle {
+	align-items:center;
+}
+.flex-bottom {
+	align-items:flex-end;
+}
+
+// Alignment horizontal
+.flex-left {
+	justify-content:flex-start;
+}
+.flex-center {
+	justify-content:center;
+}
+.flex-right {
+	justify-content:flex-end;
+}
+.flex-between {
+	justify-content:space-between;
+}
+.flex-around {
+	justify-content:space-around;
+}
+
+@media screen and (min-width:$screen-sm-min) {
+	.flex-left-sm {
+		justify-content:flex-start;
+	}
+	.flex-center-sm {
+		justify-content:center;
+	}
+	.flex-right-sm {
+		justify-content:flex-end;
+	}
+	.flex-between-sm {
+		justify-content:space-between;
+	}
+	.flex-around-sm {
+		justify-content:space-around;
+	}
+}
+
+@media screen and (min-width:$screen-md-min) {
+	.flex-left-md {
+		justify-content:flex-start;
+	}
+	.flex-center-md {
+		justify-content:center;
+	}
+	.flex-right-md {
+		justify-content:flex-end;
+	}
+	.flex-between-md {
+		justify-content:space-between;
+	}
+	.flex-around-md {
+		justify-content:space-around;
+	}
+}
+
+@media screen and (min-width:$screen-lg-min) {
+	.flex-left-lg {
+		justify-content:flex-start;
+	}
+	.flex-center-lg {
+		justify-content:center;
+	}
+	.flex-right-lg {
+		justify-content:flex-end;
+	}
+	.flex-between-lg {
+		justify-content:space-between;
+	}
+	.flex-around-lg {
+		justify-content:space-around;
+	}
+}
+
+@media screen and (min-width:$screen-xl-min) {
+	.flex-left-xl {
+		justify-content:flex-start;
+	}
+	.flex-center-xl {
+		justify-content:center;
+	}
+	.flex-right-xl {
+		justify-content:flex-end;
+	}
+	.flex-between-xl {
+		justify-content:space-between;
+	}
+	.flex-around-xl {
+		justify-content:space-around;
+	}
+}
+
+@media screen and (min-width:$screen-xxl-min) {
+	.flex-left-xxl {
+		justify-content:flex-start;
+	}
+	.flex-center-xxl {
+		justify-content:center;
+	}
+	.flex-right-xxl {
+		justify-content:flex-end;
+	}
+	.flex-between-xxl {
+		justify-content:space-between;
+	}
+	.flex-around-xxl {
+		justify-content:space-around;
+	}
+}
+
+//////////////////////////////////////////
+// Position
+.position-center {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	width:max-content;
+	max-width:100%;
+}
+
+//////////////////////////////////////////
+// Transform
+.flip-horizontal {
+	transform:scaleX(-1);
+}
+
+.flip-vertical {
+	transform:scaleY(-1);
+}
+
+//////////////////////////////////////////
+// Visibility
+
+// Visible
+@media screen and (max-width:$screen-xs-max) {
+	.visible-sm {
+		display:none !important
+	}
+}
+
+@media screen and (max-width:$screen-sm-max) {
+	.visible-md {
+		display:none !important
+	}
+}
+
+@media screen and (max-width:$screen-md-max) {
+	.visible-lg {
+		display:none !important
+	}
+}
+
+@media screen and (max-width:$screen-lg-max) {
+	.visible-xl {
+		display:none !important
+	}
+}
+
+@media screen and (min-width:$screen-xl-max) {
+	.visible-xxl {
+		display:none !important
+	}
+}
+
+// Hidden
+.hidden {
+	display:none !important
+}
+
+@media screen and (min-width:$screen-sm-min) {
+	.hidden-sm {
+		display:none !important
+	}
+}
+
+@media screen and (min-width:$screen-md-min) {
+	.hidden-md {
+		display:none !important
+	}
+}
+
+@media screen and (min-width:$screen-lg-min) {
+	.hidden-lg {
+		display:none !important
+	}
+}
+
+@media screen and (min-width:$screen-xl-min) {
+	.hidden-xl {
+		display:none !important
+	}
+}
+
+@media screen and (min-width:$screen-xxl-min) {
+	.hidden-xxl {
+		display:none !important
+	}
+}
+
+//////////////////////////////////////////
+// Image cover
+.image-cover-wrap {
+	position:relative;
+	overflow:hidden;
+}
+
+.image-cover,
+.image-cover-contain,
+.image-cover-scale-down,
+.image-cover-fill {
+	width:100%;
+	height:100%;
+}
+
+.image-cover {
+	object-fit:cover;
+}
+
+.image-cover-contain {
+	object-fit:contain;
+}
+
+.image-cover-scale-down {
+	object-fit:scale-down;
+}
+
+.image-cover-fill {
+	object-fit:fill;
+}
+
+//////////////////////////////////////////
+// Spacing
+@each $modifier, $value in $spacing-modifiers {
+	@include create-spacing-classes('', $modifier, $value);
+
+	@media screen and (min-width:$screen-sm-min) {
+		@include create-spacing-classes('sm', $modifier, $value);
+	}
+
+	@media screen and (min-width:$screen-md-min) {
+		@include create-spacing-classes('md', $modifier, $value);
+	}
+
+	@media screen and (min-width:$screen-lg-min) {
+		@include create-spacing-classes('lg', $modifier, $value);
+	}
+
+	@media screen and (min-width:$screen-xl-min) {
+		@include create-spacing-classes('xl', $modifier, $value);
+	}
+
+	@media screen and (min-width:$screen-xxl-min) {
+		@include create-spacing-classes('xxl', $modifier, $value);
+	}
+}

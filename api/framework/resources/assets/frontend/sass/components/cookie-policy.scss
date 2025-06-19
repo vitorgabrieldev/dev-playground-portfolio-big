@@ -1,0 +1,94 @@
+@import "../vars";
+
+@keyframes acceptCookiesShow {
+	0%,
+	60%,
+	75%,
+	90%,
+	to {
+		animation-timing-function:cubic-bezier(.215, .61, .355, 1)
+	}
+	0% {
+		opacity:0;
+		transform:translate3d(0, 3000px, 0) scaleY(5)
+	}
+	60% {
+		opacity:1;
+		transform:translate3d(0, -20px, 0) scaleY(.9)
+	}
+	75% {
+		transform:translate3d(0, 10px, 0) scaleY(.95)
+	}
+	90% {
+		transform:translate3d(0, -5px, 0) scaleY(.985)
+	}
+	to {
+		transform:translateZ(0)
+	}
+}
+
+@keyframes acceptCookiesHide {
+	0% {
+		transform:translate3d(0, 0, 0)
+	}
+	99% {
+		transform:translate3d(0, 100vh, 0)
+	}
+	100% {
+		z-index:0;
+		opacity:0;
+		display:none
+	}
+}
+
+.component-cookie-policy {
+	position:fixed;
+	bottom:30px;
+	right:30px;
+	padding:35px 30px 30px 40px;
+	width:100%;
+	max-width:580px;
+	letter-spacing:0.3px;
+	line-height:20px;
+	font-size:14px;
+	color:#fff;
+	background:rgba(0, 0, 0, 0.9);
+	border-radius:10px;
+	z-index:999;
+	animation:acceptCookiesShow 1s both;
+	box-shadow:0 0 10px rgba(0, 0, 0, 0.2);
+	&.hide {
+		animation:acceptCookiesHide 1s both;
+	}
+	@include mobile {
+		bottom:10px;
+		right:10px;
+		padding:20px;
+		width:calc(100% - 20px);
+	}
+	.inner {
+		font-size:15px;
+		color:#fff;
+		p {
+			margin-bottom:15px;
+			a {
+				font-weight:700;
+				color:#fff;
+				text-decoration:underline;
+			}
+		}
+		.ant-btn {
+			min-width:150px;
+			font-weight:700;
+			color:#fff;
+			background:transparent;
+			border-color:#fff;
+			border-radius:10px;
+			&:hover {
+				color:$primary-color;
+				background:#fff;
+				border-color:#fff;
+			}
+		}
+	}
+}

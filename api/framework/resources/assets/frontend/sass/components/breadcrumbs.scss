@@ -1,0 +1,23 @@
+@import "../vars";
+
+.component-breadcrumbs {
+	margin-bottom:30px;
+	.ant-breadcrumb {
+		@include mobile {
+			font-size:12px;
+			text-align:center;
+		}
+		.ant-breadcrumb-separator {
+			font-size:12px;
+			@include mobile {
+				font-size:10px;
+			}
+		}
+		.ant-breadcrumb-link {
+			i + span,
+			i + a {
+				margin-left:6px;
+			}
+		}
+	}
+}

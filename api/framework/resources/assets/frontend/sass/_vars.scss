@@ -1,0 +1,122 @@
+/* ============================================================================
+*	Vars
+*   * Keep the same values passed in the antdesign config file "assets/frontend/less/_vars.less"
+============================================================================ */
+$font-family:roboto, Helvetica, Arial, sans-serif;
+
+//////////////////////////
+// Colors
+$primary-color:#359bd6;
+$primary-color-hover:#27729d;
+$secondary-color:#1f3162;
+$secondary-color-hover:#121a2f;
+$third-color:#f6f4fa;
+$third-color-hover:#e9e4f1;
+$text-color:#1f3162;
+$text-color-alt:#9a91af;
+
+//////////////////////////
+// General
+$border-radius:5px;
+
+//////////////////////////
+// Form
+$form-vertical-label-padding:0 0 6px;
+
+//////////////////////////
+// Grid
+$grid-width:1220px;
+$grid-container-padding:20px;
+$grid-container-padding-mobile:20px;
+
+// Media queries breakpoints
+// $screen-xs and $screen-xs-min is not used in Grid
+// smallest break point is $screen-md
+$screen-xs:480px;
+$screen-xs-min:$screen-xs;
+// 👆 Extra small screen / phone
+
+// 👇 Small screen / tablet
+$screen-sm:576px;
+$screen-sm-min:$screen-sm;
+
+// Medium screen / desktop
+$screen-md:768px;
+$screen-md-min:$screen-md;
+
+// Large screen / wide desktop
+$screen-lg:992px;
+$screen-lg-min:$screen-lg;
+
+// Extra large screen / full hd
+$screen-xl:1200px;
+$screen-xl-min:$screen-xl;
+
+// Extra extra large screen / large desktop
+$screen-xxl:1600px;
+$screen-xxl-min:$screen-xxl;
+
+// provide a maximum
+$screen-xs-max:($screen-sm-min - 1px);
+$screen-sm-max:($screen-md-min - 1px);
+$screen-md-max:($screen-lg-min - 1px);
+$screen-lg-max:($screen-xl-min - 1px);
+$screen-xl-max:($screen-xxl-min - 1px);
+
+// Breakpoints
+$mobile-max:($screen-sm - 1px);
+$mobile-large-min:$screen-sm;
+$mobile-large-max:($screen-md - 1px);
+$tablet-min:$screen-md;
+$tablet-max:($screen-lg - 1px);
+$tablet-large-min:$screen-lg;
+$tablet-large-max:($screen-xl - 1px);
+$desktop-min:$screen-xl;
+$desktop-max:($screen-xxl - 1px);
+$desktop-large-min:$screen-xxl;
+
+//////////////////////////
+// Spacing
+$spacing-values:(
+	0: 0,
+	5: 5px,
+	10: 10px,
+	15: 15px,
+	20: 20px,
+	25: 25px,
+	30: 30px,
+	35: 35px,
+	40: 40px,
+	45: 45px,
+	50: 50px,
+	60: 60px,
+	70: 70px,
+	80: 80px,
+	90: 90px,
+	100: 100px,
+	150: 150px,
+	200: 200px,
+	250: 250px,
+	300: 300px,
+	350: 350px,
+	400: 400px,
+	450: 450px,
+	500: 500px,
+	550: 550px,
+	600: 600px,
+	650: 650px,
+	700: 700px,
+);
+
+$spacing-modifiers:(
+	"m": margin,
+	"mt": margin-top,
+	"mr": margin-right,
+	"mb": margin-bottom,
+	"ml": margin-left,
+	"p": padding,
+	"pt": padding-top,
+	"pr": padding-right,
+	"pb": padding-bottom,
+	"pl": padding-left,
+);
