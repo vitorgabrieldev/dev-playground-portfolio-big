@@ -1,118 +1,100 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
-import { Button, Col, Form, Input, Modal, Row } from "antd";
-import QueueAnim from "rc-queue-anim";
-
-import { apiUpdateAccessToken } from "./../../config/api";
-
-import { CLIENT_DATA } from "./../../config/general";
-
-import { authActions } from "./../../redux/actions";
-
+import { Link, Redirect, useLocation } from "react-router-dom";
+import { Button, Form, Input, Typography, Modal } from "antd";
+import { authActions } from "../../redux/actions";
 import { authService } from "../../redux/services";
+import { apiUpdateAccessToken } from "../../config/api";
+import { CLIENT_DATA } from "../../config/general";
 
-class Login extends Component {
-	constructor(props) {
-		super(props);
+function Login({ doLogin }) {
+	const location = useLocation();
+	const { referrer } = location.state || { referrer: { pathname: "/" } };
 
-		this.state = {
-			isSending         : false,
-			error             : "",
-			redirectToReferrer: false,
-		};
-	}
+	const [isSending, setIsSending] = useState(false);
+	const [redirect, setRedirect] = useState(false);
 
-	onFinish = (values) => {
-		this.setState({
-			isSending: true,
-		});
-
-		let access_token;
+	const onFinish = (values) => {
+		setIsSending(true);
 
 		const data = {
 			...values,
 			token_name: `${CLIENT_DATA.browser_name} - ${CLIENT_DATA.os_name}`,
-		}
+		};
 
-		authService.login(data)
-		.then((response) => {
-			this.setState({
-				isSending: false,
+		let access_token;
+
+		authService
+			.login(data)
+			.then((res) => {
+				access_token = res.data.access_token;
+				apiUpdateAccessToken(`Bearer ${access_token}`);
+				return authService.getUserData();
+			})
+			.then((res) => {
+				doLogin({
+					access_token,
+					...res.data.data,
+				});
+				setRedirect(true);
+			})
+			.catch((err) => {
+				Modal.error({
+					title: "Login failed",
+					content: String(err),
+				});
+			})
+			.finally(() => {
+				setIsSending(false);
 			});
-
-			access_token = response.data.access_token;
-
-			// Update access_token from api instance
-			apiUpdateAccessToken(`Bearer ${access_token}`);
-
-			// Get user data
-			return authService.getUserData();
-		})
-		.then((response) => {
-			// Do Login
-			this.props.doLogin({
-				access_token: access_token,
-				...response.data.data,
-			});
-		})
-		.catch((data) => {
-			this.setState({
-				isSending: false,
-			});
-
-			Modal.error({
-				title  : "Ocorreu um erro!",
-				content: String(data),
-			});
-		});
 	};
 
-	render() {
-		const {referrer} = this.props.location.state || {referrer: {pathname: "/"}};
-
-		const {isSending, redirectToReferrer} = this.state;
-
-		if( redirectToReferrer )
-		{
-			return <Redirect to={referrer} />
-		}
-
-		return (
-			<QueueAnim className="site-content-inner page-login">
-				<div className="page-content" key="1">
-					<Form
-						ref={el => this.form = el}
-						layout="vertical"
-						scrollToFirstError
-						onFinish={this.onFinish}>
-						<Form.Item name="email" rules={[{required: true, message: "Campo obrigatório."}, {type: "email", message: "Informe um e-mail válido."}]}>
-							<Input prefix={<i className="fal fa-envelope" />} placeholder="E-mail" />
-						</Form.Item>
-						<Form.Item name="password" rules={[{required: true, message: "Campo obrigatório."}]}>
-							<Input.Password prefix={<i className="fal fa-lock" />} type="password" placeholder="Senha" />
-						</Form.Item>
-						<Row gutter={16} align="middle">
-							<Col xs={14} sm={12}>
-								<Link to="/recovery-password">Esqueci minha senha</Link>
-							</Col>
-							<Col xs={10} sm={12}>
-								<Button type="primary" htmlType="submit" size="large" block loading={isSending}>Entrar</Button>
-							</Col>
-						</Row>
-					</Form>
-				</div>
-			</QueueAnim>
-		)
+	if (redirect) {
+		return <Redirect to={referrer} />;
 	}
+
+	return (
+		<div style={{ minHeight: "fit-content", display: "flex", justifyContent: "center", alignItems: "center", background: "#fff", borderRadius: "10px", border: "1px solid #888" }}>
+			<div style={{ width: 360, padding: 32 }}>
+				<Typography.Title level={3} style={{ textAlign: "center", marginBottom: 24, fontWeight: 500 }}>
+					Acessar painel
+				</Typography.Title>
+				<Form layout="vertical" onFinish={onFinish}>
+					<Form.Item
+						name="email"
+						label="Email"
+						rules={[
+							{ required: true, message: "Enter your email" },
+							{ type: "email", message: "Invalid email" },
+						]}
+					>
+						<Input size="large" placeholder="email@example.com" />
+					</Form.Item>
+					<Form.Item
+						name="password"
+						label="Senha"
+						rules={[{ required: true, message: "Enter your password" }]}
+					>
+						<Input.Password size="large" placeholder="••••••••" />
+					</Form.Item>
+					<Button
+						type="primary"
+						htmlType="submit"
+						block
+						size="large"
+						loading={isSending}
+						style={{ borderRadius: 6, marginTop: "10px" }}
+					>
+						Entrar
+					</Button>
+				</Form>
+			</div>
+		</div>
+	);
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-	return {
-		doLogin: (data) => {
-			dispatch(authActions.login(data));
-		}
-	}
-};
+const mapDispatchToProps = (dispatch) => ({
+	doLogin: (data) => dispatch(authActions.login(data)),
+});
 
 export default connect(null, mapDispatchToProps)(Login);
