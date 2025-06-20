@@ -6,11 +6,8 @@ use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class CategorySeeder extends Seeder
+class CategoriesSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $categories = [
@@ -85,7 +82,6 @@ class CategorySeeder extends Seeder
             ]);
         }
 
-        // Criar algumas subcategorias
         $programming = Category::where('name', 'Programação')->first();
         if ($programming) {
             $subCategories = [
@@ -110,4 +106,4 @@ class CategorySeeder extends Seeder
             }
         }
     }
-} 
+}

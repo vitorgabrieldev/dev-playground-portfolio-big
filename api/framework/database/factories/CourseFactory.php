@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,19 +24,15 @@ class CourseFactory extends Factory
         
         return [
             'uuid' => Str::uuid(),
-            'creator_id' => User::factory(),
+            'creator_id' => Customer::factory(),
             'title' => $this->faker->sentence(3, 6),
             'description' => $this->faker->paragraphs(3, true),
             'short_description' => $this->faker->sentence(10, 20),
             'price' => $this->faker->randomFloat(2, 29.90, 299.90),
-            'thumbnail' => $this->faker->imageUrl(640, 480, 'business'),
-            'preview_video' => $this->faker->url(),
-            'preview_content' => $this->faker->paragraph(),
             'status' => $status,
             'rejection_reason' => $status === 'rejected' ? $this->faker->sentence() : null,
             'approved_by' => $status === 'approved' || $status === 'published' ? User::factory() : null,
             'approved_at' => $status === 'approved' || $status === 'published' ? $this->faker->dateTimeBetween('-1 year', 'now') : null,
-            'total_lessons' => $this->faker->numberBetween(5, 50),
             'total_duration' => $this->faker->numberBetween(60, 1800), // 1-30 horas em minutos
             'total_sales' => $this->faker->numberBetween(0, 1000),
             'total_revenue' => $this->faker->randomFloat(2, 0, 50000),
@@ -44,7 +41,6 @@ class CourseFactory extends Factory
             'tags' => json_encode($this->faker->words(3)),
             'requirements' => json_encode($this->faker->sentences(3)),
             'objectives' => json_encode($this->faker->sentences(5)),
-            'is_featured' => $this->faker->boolean(20),
             'is_active' => true,
         ];
     }

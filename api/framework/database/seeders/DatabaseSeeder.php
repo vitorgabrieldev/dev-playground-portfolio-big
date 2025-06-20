@@ -24,23 +24,20 @@ class DatabaseSeeder extends Seeder
 			RoleSeeder::class,
 			UserSeeder::class,
 
-			// Cities
-			StateSeeder::class,
-			CitySeeder::class,
-
-			// Course Platform
-			CategorySeeder::class,
-			CourseSeeder::class,
-			LessonSeeder::class,
-			FaqSeeder::class,
-
 			// Customer
 			CustomerSeeder::class,
 			CustomerPaymentMethodSeeder::class,
 			CustomerPayoutMethodSeeder::class,
 
-			// Producer Balance
-			ProducerBalanceSeeder::class,
+			// Cities
+			StateSeeder::class,
+			CitySeeder::class,
+
+			// Course Platform
+			CategoriesSeeder::class,
+			CourseSeeder::class,
+			LessonSeeder::class,
+			FaqSeeder::class,
 		]);
 
 		if( !is_environment_prod() )

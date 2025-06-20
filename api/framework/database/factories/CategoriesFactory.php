@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Categories>
  */
-class CategoryFactory extends Factory
+class CategoriesFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,7 +21,7 @@ class CategoryFactory extends Factory
         
         return [
             'uuid' => Str::uuid(),
-            'parent_id' => null, // Pode ser alterado para criar subcategorias
+            'parent_id' => null,
             'name' => ucwords($name),
             'slug' => Str::slug($name),
             'description' => $this->faker->paragraph(),
@@ -38,7 +38,7 @@ class CategoryFactory extends Factory
     public function withParent(): static
     {
         return $this->state(fn (array $attributes) => [
-            'parent_id' => \App\Models\Category::factory(),
+            'parent_id' => \App\Models\Categories::factory(),
         ]);
     }
 } 

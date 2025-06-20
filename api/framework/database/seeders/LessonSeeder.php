@@ -28,12 +28,6 @@ class LessonSeeder extends Seeder
                     'is_preview' => $isPreview,
                 ]);
             }
-
-            // Atualizar contadores do curso
-            $course->update([
-                'total_lessons' => $course->lessons()->count(),
-                'total_duration' => $course->lessons()->sum('duration'),
-            ]);
         }
     }
 } 
