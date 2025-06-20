@@ -20,7 +20,10 @@ class Home extends Component {
 
 	componentDidMount() {
 		// Fecth all
-		this.fetchGetAll();
+		// this.fetchGetAll();
+		this.setState({
+			isLoading: false,
+		});
 	};
 
 	fetchGetAll = () => {
@@ -32,9 +35,9 @@ class Home extends Component {
 		.then((response) => {
 			this.setState(state => ({
 				isLoading      : false,
-				customer_ativo_total : response.data.data.customer_ativo_total,
-				customer_deleted_total : response.data.data.customer_deleted_total,
-				ecwid_products_total : response.data.data.ecwid_products_total,
+				// customer_ativo_total : response.data.data.customer_ativo_total,
+				// customer_deleted_total : response.data.data.customer_deleted_total,
+				// ecwid_products_total : response.data.data.ecwid_products_total,
 			}));
 		})
 		.catch((data) => {
@@ -78,7 +81,7 @@ class Home extends Component {
 						</div>
 					) : (
 						<Fragment>
-							<div className="cards">
+							{/* <div className="cards">
 								<Row gutter={16}>
 									<Col xs={24} sm={8} lg={6} xxl={4}>
 										<Card data-has-link={true} onClick={() => this.props.permissions.includes("customers.list") && this.props.history.push('/list/customers?is_active=1')}>
@@ -102,7 +105,7 @@ class Home extends Component {
 										</Card>
 									</Col>
 								</Row>
-							</div>
+							</div> */}
 						</Fragment>
 					)}
 				</div>
