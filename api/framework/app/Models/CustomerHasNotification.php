@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Customer;
+use App\Models\Notification;
 
 class CustomerHasNotification extends Model
 {
@@ -21,4 +23,8 @@ class CustomerHasNotification extends Model
         'read_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
-} 
+
+    // RELACIONAMENTOS
+    public function customer() { return $this->belongsTo(Customer::class); }
+    public function notification() { return $this->belongsTo(Notification::class); }
+}

@@ -12,9 +12,19 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
     public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Course::class, 'category_id');
     }
 
     protected $fillable = [

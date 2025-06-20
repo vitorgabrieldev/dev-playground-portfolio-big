@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Customer;
 
 class ProducerBalance extends Model
 {
@@ -21,4 +22,7 @@ class ProducerBalance extends Model
         'balance_available' => 'float',
         'balance_blocked' => 'float',
     ];
+
+    // RELACIONAMENTOS
+    public function producer() { return $this->belongsTo(Customer::class, 'producer_id'); }
 } 

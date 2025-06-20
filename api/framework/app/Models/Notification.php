@@ -19,4 +19,7 @@ class Notification extends Model
         'is_read' => 'boolean',
         'read_at' => 'datetime',
     ];
+
+    // RELACIONAMENTOS
+    public function notifiable() { return $this->morphTo(); }
 } 

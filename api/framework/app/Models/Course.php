@@ -8,20 +8,47 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Category;
 use App\Models\Lesson;
+use App\Models\Customer;
+use App\Models\User;
+use App\Models\CoursePurchase;
 
 class Course extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public function creator()
+    {
+        return $this->belongsTo(Customer::class, 'creator_id');
+    }
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function approvedBy()
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Customer::class, 'created_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Customer::class, 'updated_by');
     }
 
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(CoursePurchase::class);
     }
 
     protected $fillable = [

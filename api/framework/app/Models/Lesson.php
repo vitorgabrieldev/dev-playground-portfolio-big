@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Course;
+use App\Models\User;
 
 class Lesson extends Model
 {
@@ -18,4 +20,9 @@ class Lesson extends Model
         'is_preview' => 'boolean',
         'is_active' => 'boolean',
     ];
+
+    // RELACIONAMENTOS
+    public function course() { return $this->belongsTo(Course::class); }
+    public function createdBy() { return $this->belongsTo(User::class, 'created_by'); }
+    public function updatedBy() { return $this->belongsTo(User::class, 'updated_by'); }
 } 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Customer;
 
 class CustomerPayoutMethod extends Model
 {
@@ -18,4 +19,7 @@ class CustomerPayoutMethod extends Model
         'is_default' => 'boolean',
         'is_active' => 'boolean',
     ];
+
+    // RELACIONAMENTOS
+    public function customer() { return $this->belongsTo(Customer::class); }
 } 
