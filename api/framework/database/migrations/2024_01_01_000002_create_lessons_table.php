@@ -17,16 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('type', ['video', 'text', 'pdf', 'link', 'quiz'])->default('video');
-            $table->text('content')->nullable(); // Conteúdo da aula (texto, URL do vídeo, etc.)
-            $table->string('file_path')->nullable(); // Caminho do arquivo (PDF, vídeo)
-            $table->string('file_name')->nullable(); // Nome original do arquivo
-            $table->unsignedBigInteger('file_size')->nullable(); // Em bytes
-            $table->string('file_mime')->nullable(); // Tipo MIME do arquivo
-            $table->unsignedInteger('duration')->nullable(); // Duração em segundos
-            $table->integer('order')->default(0); // Ordem da aula no curso
-            $table->boolean('requires_completion')->default(false); // Se precisa completar para avançar
-            $table->boolean('is_preview')->default(false); // Se é aula de prévia gratuita
+            $table->unsignedInteger('duration')->nullable();
+            $table->integer('order')->default(0);
+            $table->boolean('is_preview')->default(false);
             $table->boolean('is_active')->default(true);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->unsignedBigInteger('parent_id')->nullable(); // Para subcategorias
+            $table->unsignedBigInteger('parent_id')->nullable(); // Categoria pai (null = categoria principal)
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->string('icon')->nullable(); // Ícone da categoria
-            $table->string('color')->nullable(); // Cor da categoria
+            $table->string('icon')->nullable();
+            $table->string('color')->nullable();
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->unsignedBigInteger('created_by')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            // parent_id referencia a própria tabela categories, permitindo subcategorias
             $table->foreign('parent_id')->references('id')->on('categories')->onDelete('set null');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');

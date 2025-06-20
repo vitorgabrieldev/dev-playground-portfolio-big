@@ -14,22 +14,49 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->unsignedBigInteger('user_id');
-            $table->string('type'); // Tipo da notificação
+
+            // Polimórfico: permite notificar qualquer modelo (User, Customer, etc)
+            $table->unsignedBigInteger('notifiable_id');
+            $table->string('notifiable_type'); // Ex: App\\Models\\User, App\\Models\\Customer
+            $table->index(['notifiable_id', 'notifiable_type'], 'notifications_notifiable_index');
+
+            // Classificação da notificação
+            $table->string('type'); // Ex: system, purchase, payout, lesson, etc
+            $table->string('channel')->default('web'); // Ex: web, email, push, sms
+            $table->enum('priority', ['low', 'normal', 'high'])->default('normal');
+
+            // Conteúdo
             $table->string('title');
             $table->text('message');
-            $table->json('data')->nullable(); // Dados adicionais
+            $table->json('data')->nullable(); // Dados adicionais (payload)
             $table->string('action_url')->nullable(); // URL de ação
+
+            // Controle de leitura
             $table->boolean('is_read')->default(false);
             $table->timestamp('read_at')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
             // Índices para performance
-            $table->index(['user_id', 'is_read']);
-            $table->index(['user_id', 'created_at']);
+            $table->index(['is_read', 'created_at'], 'notifications_read_created_index');
+        });
+
+        // Tabela associativa para controle de leitura e exclusão de notificações por customer
+        Schema::create('customer_has_notifications', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('notification_id');
+            $table->boolean('is_read')->default(false);
+            $table->timestamp('read_at')->nullable();
+            $table->boolean('is_deleted')->default(false);
+            $table->timestamp('deleted_at')->nullable();
+            $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('notification_id')->references('id')->on('notifications')->onDelete('cascade');
+            $table->unique(['customer_id', 'notification_id'], 'customer_notification_unique');
+            $table->index(['customer_id', 'is_read', 'is_deleted']);
         });
     }
 
@@ -39,5 +66,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('notifications');
+        Schema::dropIfExists('customer_has_notifications');
     }
 }; 

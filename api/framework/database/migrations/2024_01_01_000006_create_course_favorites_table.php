@@ -14,15 +14,18 @@ return new class extends Migration
         Schema::create('course_favorites', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('course_id');
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             
             // Um usuário só pode favoritar o mesmo curso uma vez
-            $table->unique(['user_id', 'course_id']);
+            $table->unique(['customer_id', 'course_id']);
+
+            $table->index('customer_id');
         });
     }
 
