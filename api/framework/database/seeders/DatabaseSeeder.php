@@ -33,6 +33,14 @@ class DatabaseSeeder extends Seeder
 			CourseSeeder::class,
 			LessonSeeder::class,
 			FaqSeeder::class,
+
+			// Customer
+			CustomerSeeder::class,
+			CustomerPaymentMethodSeeder::class,
+			CustomerPayoutMethodSeeder::class,
+
+			// Producer Balance
+			ProducerBalanceSeeder::class,
 		]);
 
 		if( !is_environment_prod() )
