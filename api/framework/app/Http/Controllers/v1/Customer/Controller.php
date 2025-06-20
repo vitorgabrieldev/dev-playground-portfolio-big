@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\v1\Customer;
 
 use App\Exceptions\RepositoryException;
-use App\Models\CustomerActivity;
 use App\Models\ProfissionalActivity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -60,7 +59,7 @@ class Controller extends BaseController
 	/**
 	 * Get logged user
 	 *
-	 * @return mixed|Customer
+	 * @return mixed
 	 */
 	protected function user()
 	{
@@ -89,7 +88,7 @@ class Controller extends BaseController
 			'method'        => $request->getMethod(),
 		];
 
-		$log = class_basename(get_class($user)) == "Customer" ? new CustomerActivity($data) : new ProfissionalActivity($data);
+		$log = new ProfissionalActivity($data);
 
 		if( $item instanceof Model )
 		{

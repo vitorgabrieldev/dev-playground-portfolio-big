@@ -11,10 +11,7 @@ use App\Mail\Customer\AccessCodeMail;
 use App\Mail\Admin\AlertNewAccount;
 use Illuminate\Auth\Events\Registered;
 use App\Mail\Customer\VerifyAccountMail;
-use App\Models\EmailVerification;
-use App\Models\Customer;
 use App\Models\PerfisAcesso;
-use App\Models\Preferencias;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -1129,7 +1126,7 @@ class AuthController extends Controller
 	 *
 	 * @param Request $request
 	 *
-	 * @bodyParam notify_general boolean boolean boolean
+	 * @bodyParamnotify_general boolean boolean boolean
 	 *
 	 * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
 	 * @throws ValidationException

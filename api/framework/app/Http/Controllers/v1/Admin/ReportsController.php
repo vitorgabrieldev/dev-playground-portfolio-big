@@ -6,7 +6,6 @@ use App\Http\Resources\Admin\ReportFinishResource;
 use App\Http\Resources\Admin\ReportErrorResource;
 use App\Http\Resources\Customer\OffersResource;
 use App\Models\Offers;
-use App\Models\Customer;
 use App\Models\ReportError;
 use App\Models\ReportFinish;
 use Carbon\Carbon;
@@ -70,13 +69,12 @@ class ReportsController extends Controller
 			'page'         => 'sometimes|nullable|integer',
 			'orderBy'      => 'sometimes|nullable|string',
 			'offer_id'     => 'sometimes|nullable|string',
-			'customer_id'  => 'sometimes|nullable|string',
 			'created_at'   => 'sometimes|array',
 			'created_at.*' => 'sometimes|date_format:Y-m-d\TH:i:sP',
 		]);
 
 		$items = ReportError::query();
-		$items->with(['offer', 'customer']);
+		$items->with(['offer']);
 
 		$orderBy          = $this->getOrderBy($request->input('orderBy'));
 		$limit            = $this->getLimit($request->input('limit'));
@@ -106,14 +104,6 @@ class ReportsController extends Controller
 			}
 		}
 
-		if ($request->has('customer_id')) {
-            $customer = Customer::where('uuid', $request->input('customer_id'))->first();
-
-            if ($customer) {
-                $items->where('customer_id', $customer->id);
-            }
-        }
-
 		$items = $items->paginate($limit)->appends($request->except('page'));
 
 		return ReportErrorResource::collection($items);
@@ -130,7 +120,7 @@ class ReportsController extends Controller
 	 */
 	public function showErrors(ReportError $reportError)
 	{
-		$reportError->load(['offer', 'customer']);
+		$reportError->load(['offer']);
 		return new ReportErrorResource($reportError);
 	}
 
@@ -274,7 +264,7 @@ class ReportsController extends Controller
 		]);
 
 		$items = ReportFinish::query();
-		$items->with(['offer', 'customer']);
+		$items->with(['offer']);
 
 		$search           = $request->input('search');
 		$orderBy          = $this->getOrderBy($request->input('orderBy'));
@@ -299,8 +289,7 @@ class ReportsController extends Controller
 				{
 					$query->orWhere($searchField, 'like', '%' . $search . '%');
 				}
-			})->orWhereRelation('offer','title', 'like', '%' . $search . '%')
-			->orWhereRelation('customer','name', 'like', '%' . $search . '%');
+			})->orWhereRelation('offer','title', 'like', '%' . $search . '%');
 		}
 
 		foreach( $orderBy as $orderByField )
@@ -315,14 +304,6 @@ class ReportsController extends Controller
 				$items->where('offer_id', $offer->id);
 			}
 		}
-
-		if ($request->has('customer_id')) {
-            $customer = Customer::where('uuid', $request->input('customer_id'))->first();
-
-            if ($customer) {
-                $items->where('customer_id', $customer->id);
-            }
-        }
 
 		$items = $items->paginate($limit)->appends($request->except('page'));
 
@@ -342,7 +323,7 @@ class ReportsController extends Controller
 	public function showFinish($uuid)
 	{
 		$reportFinish = ReportFinish::where('uuid', $uuid)->firstOrFail();
-		$reportFinish->load(['offer', 'customer']);
+		$reportFinish->load(['offer']);
 		return new ReportFinishResource($reportFinish);
 	}
 

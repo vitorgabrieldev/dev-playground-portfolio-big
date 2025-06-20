@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\v1\Admin;
 
-use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Services\EcwidService;
 
@@ -29,8 +28,6 @@ class DashboardController extends Controller
             $products = $ecwid->getProducts();
 
             $data = [
-                'customer_ativo_total'   => Customer::where('is_active', true)->count(),
-                'customer_deleted_total' => Customer::onlyTrashed()->count(),
                 'ecwid_products_total'   => $products['total'] ?? 0,
             ];
 
