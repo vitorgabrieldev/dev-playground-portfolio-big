@@ -16,17 +16,9 @@ class UserSeeder extends Seeder
 	 */
 	public function run()
 	{
-
 		User::factory()->create([
-			'name'      => 'Douglas A.',
-			'email'     => 'teste@teste.com.br',
-			'avatar'    => 'storage/_default/avatar-teste.jpg',
-			'is_active' => 1,
-		])->roles()->sync([1]);
-
-		User::factory()->create([
-			'name'      => 'Projetos',
-			'email'     => 'teste@teste.com.br',
+			'name'      => 'vitorgabrieldev',
+			'email'     => 'vitorgabrieldeoliveiradev@gmail.com',
 			'avatar'    => null,
 			'is_active' => 1,
 		])->roles()->sync([1]);

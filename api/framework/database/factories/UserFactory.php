@@ -23,7 +23,6 @@ class UserFactory extends Factory
 	 */
 	public function definition()
 	{
-		#$avatar = $this->faker->boolean ? null : 'storage/avatar/' . faker_image(public_path('storage/avatar'), 170, 170);
 		$avatar = $this->faker->boolean ? null : 'storage/_default/avatar-' . $this->faker->numberBetween(1, 10) . '.jpg';
 
 		return [
